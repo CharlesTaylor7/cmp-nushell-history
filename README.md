@@ -1,5 +1,5 @@
 # cmp-nushell-history
-Neovim Completion for [nushell](https://www.nushell.sh/) [history](https://www.nushell.sh/commands/docs/history.html).
+Neovim Completion for [nushell](https://www.nushell.sh/) history. Works with both text and sqlite history backends.
 
 Completion source for use with [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp).
 
