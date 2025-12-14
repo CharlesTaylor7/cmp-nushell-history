@@ -22,11 +22,12 @@ function source:execute(completion_item, callback)
 end
 
 function source:complete(params, callback)
-  local items = {}
-  vim.system({ "nu", "-c", "history | get command | to text" }, {}, function(result)
+  vim.system({ "nu", "-l", "-c", "history | get command | uniq | to text" }, {}, function(result)
+    local items = {}
     for line in result.stdout:gmatch("[^\r\n]+") do
       table.insert(items, { label = line })
     end
+
     callback(items)
   end)
 end
