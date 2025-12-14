@@ -1,7 +1,9 @@
 # cmp-nushell-history
-Neovim Completion for [nushell](https://www.nushell.sh/) history. Works with both text and sqlite history backends.
+Autocompletes in nushell script with nushell history.
 
-Completion source for use with [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp).
+This is convenient if you are iterating on a script in the terminal and want to put it into a reusable script. 
+
+Designed as a completion source for use with [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp).
 
 ## Setup with lazy vim:
 
