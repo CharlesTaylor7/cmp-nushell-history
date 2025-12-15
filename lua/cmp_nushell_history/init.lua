@@ -1,4 +1,3 @@
-local cmp = require("cmp")
 local source = {}
 
 function source.new()
