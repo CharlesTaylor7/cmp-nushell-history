@@ -22,6 +22,12 @@ function source:execute(completion_item, callback)
 end
 
 function source:complete(params, callback)
+  -- only complete if cursor is at end of line
+  if params.context.cursor_after_line ~= "" then
+    callback()
+    return
+  end
+
   vim.system({ "nu", "-l", "-c", "history | get command | uniq | to text" }, {}, function(result)
     local items = {}
     for line in result.stdout:gmatch("[^\r\n]+") do
