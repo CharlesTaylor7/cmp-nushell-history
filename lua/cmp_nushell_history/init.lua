@@ -22,12 +22,18 @@ end
 
 function source:complete(params, callback)
   -- only complete if cursor is at end of line
+  -- only complete if history is a subtring match
+  -- 1. remove whitespace from params.cursor_before_line
+  -- 2. pass str starts-with $val to nushell command
+  --
   if params.context.cursor_after_line ~= "" then
     callback()
     return
   end
-
-  vim.system({ "nu", "-l", "-c", "history | get command | uniq | to text" }, {}, function(result)
+  local prefix = string.gsub(params.context.cursor_before_line, "%s", "")
+  local substring_cmd = "where { str starts-with r#'" .. prefix .. "'# }"
+  local history_cmd = "history | get command | uniq | " .. substring_cmd .. " | to text"
+  vim.system({ "nu", "-l", "-c", history_cmd }, {}, function(result)
     local items = {}
     for line in result.stdout:gmatch("[^\r\n]+") do
       table.insert(items, { label = line })
